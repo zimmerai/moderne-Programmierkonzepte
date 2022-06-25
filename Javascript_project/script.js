@@ -1,4 +1,5 @@
 import { setupGround, updateGround } from "./ground.js"
+import { setupPlayer, updatePlayer } from "./player.js"
 
 const WORLD_WIDTH = 100
 const WORLD_HEIGHT = 30
@@ -25,6 +26,7 @@ function update(time) {
   const timeDifference = time - lastTime
 
   updateGround(timeDifference, speedScale)
+  updatePlayer(timeDifference, speedScale)
   updateSpeedScale(timeDifference)
   updateScore(timeDifference, speedScale)
   lastTime = time
@@ -38,7 +40,6 @@ function updateScore(timeDifference, speedScale) {
 
 function updateSpeedScale(timeDifference){
   speedScale += timeDifference * SPEED_SCALE_INCREASE
-  console.log(speedScale)
 }
 
 function handleStart() {
@@ -46,6 +47,7 @@ function handleStart() {
   speedScale = 1
   score = 0
   setupGround()
+  setupPlayer()
   startScreenElement.classList.add("hide")
   window.requestAnimationFrame(update)
 }
