@@ -47,7 +47,7 @@
     --bottom: 0;
     position: absolute;
     left: 1%;
-    height: 30%;
+    height: 20%;
     bottom: calc(var(--bottom) * 1%);
   }
   

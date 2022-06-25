@@ -2,8 +2,8 @@ import { setupGround, updateGround } from "./ground.js"
 import { setupPlayer, updatePlayer } from "./player.js"
 
 const WORLD_WIDTH = 100
-const WORLD_HEIGHT = 30
-const SPEED_SCALE_INCREASE = 0.00001
+const WORLD_HEIGHT = 35
+const SPEED_SCALE_INCREASE = 0.000005
 
 const worldElement = document.querySelector("[data-world]")
 const scoreElement = document.querySelector("[data-score]")
