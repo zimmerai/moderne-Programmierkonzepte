@@ -2,6 +2,7 @@ from email.mime import image
 import pygame
 import os
 import random
+from threading import Timer
 
 pygame.init()
 
@@ -10,13 +11,13 @@ SCREEN_HEIGHT = 600
 SCREEN_WIDTH = 1100
 SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
-RUNNING = [pygame.image.load(os.path.join("Python_project/Images/Dino", "DinoRun1.png")),
-           pygame.image.load(os.path.join("Python_project/Images/Dino", "DinoRun2.png"))]
+RUNNING = [pygame.image.load(os.path.join("Python_project/Images/Mario", "Mario1_run.png")),
+           pygame.image.load(os.path.join("Python_project/Images/Mario", "Mario2_run.png"))]
 
-JUMPING = pygame.image.load(os.path.join("Python_project/Images/Dino", "DinoJump.png"))
+JUMPING = pygame.image.load(os.path.join("Python_project/Images/Mario", "Mario1_run.png"))
 
-DUCKING = [pygame.image.load(os.path.join("Python_project/Images/Dino", "DinoDuck1.png")),
-           pygame.image.load(os.path.join("Python_project/Images/Dino", "DinoDuck2.png"))]
+#DUCKING = [pygame.image.load(os.path.join("Python_project/Images/Dino", "DinoDuck1.png")),
+#           pygame.image.load(os.path.join("Python_project/Images/Dino", "DinoDuck2.png"))]
 
 SMALL_CACTUS = [pygame.image.load(os.path.join("Python_project/Images/Cactus", "SmallCactus1.png")),
                 pygame.image.load(os.path.join("Python_project/Images/Cactus", "SmallCactus2.png")),
@@ -34,22 +35,21 @@ BG = pygame.image.load(os.path.join("Python_project/Images/Other", "Track.png"))
 
 class Dinosaur:
     X_POS = 80
-    Y_POS = 310
-    Y_POS_DUCK = 340
+    Y_POS = 260
+    #Y_POS_DUCK = 340
     JUMP_VEL = 8.5
-    DOUBLE_JUMP_VEL = 2
+    JUMP_GRAVITY = 0.8
 
     def __init__(self):
-        self.duck_img = DUCKING
+        #self.duck_img = DUCKING
         self.run_img = RUNNING
         self.jump_img = JUMPING
 
-        self.dino_duck = False
+        #self.dino_duck = False
         self.dino_run = True
-        self.dino_jump = False
-        #self.dino_doubleJump = False
-        #self.dino_doubleJump_allowed = True
-
+        self.dinoFirstJump = False
+        self.dinoSecondJump = False
+        
         self.step_index = 0
         self.jump_vel = self.JUMP_VEL
         self.image = self.run_img[0]
@@ -58,41 +58,42 @@ class Dinosaur:
         self.dino_rect.y = self.Y_POS
 
     def update(self, userInput):
-        if self.dino_duck:
-            self.duck()
+        #if self.dino_duck:
+        #    self.duck()
         if self.dino_run:
             self.run()
-        if self.dino_jump:
+        if self.dinoFirstJump:
             self.jump()
 
         if self.step_index >= 10:
             self.step_index = 0
 
-        if userInput[pygame.K_UP] or userInput[pygame.K_SPACE]:
-            self.dino_duck = False
-            self.dino_run = False
-            #self.dino_doubleJump = False
-            #if self.dino_jump and self.dino_doubleJump_allowed:
-            #    self.dino_doubleJump = True
-            #    self.dino_doubleJump_allowed = False
-            self.dino_jump = True            
-        elif userInput[pygame.K_DOWN] and not self.dino_jump:
-            self.dino_run = False
-            self.dino_jump = False
-            #self.dino_doubleJump = False
-            self.dino_duck = True
-        elif not (self.dino_jump or userInput[pygame.K_DOWN]):
-            self.dino_run = True
-            self.dino_jump = False
-            #self.dino_doubleJump = False
-            self.dino_duck = False
+        if userInput[pygame.K_SPACE] and not self.dinoSecondJump:
+            self.onJump()
 
-    def duck(self):
-        self.image = self.duck_img[self.step_index // 5]
-        self.dino_rect = self.image.get_rect()
-        self.dino_rect.x = self.X_POS
-        self.dino_rect.y = self.Y_POS_DUCK
-        self.step_index += 1
+        #if (userInput[pygame.KEYUP] or userInput[pygame.K_SPACE]) and self.dinoFirstJump and not self.dinoSecondJump:
+         #   self.onJump()    
+            
+
+        #elif userInput[pygame.K_DOWN] and not self.dino_jump:
+           # self.dino_run = False
+           # self.dino_jump = False
+            #self.dino_doubleJump = False
+           # self.dino_duck = True
+        elif not (self.dinoFirstJump ): #or userInput[pygame.K_DOWN]
+            self.dino_run = True
+            self.dinoFirstJump = False
+            #self.dino_duck = False
+
+    #def duck(self):
+        #self.image = self.duck_img[self.step_index // 5]
+        #self.dino_rect = self.image.get_rect()
+        #self.dino_rect.x = self.X_POS
+        #self.dino_rect.y = self.Y_POS_DUCK
+        #self.step_index += 1
+
+    
+
 
     def run(self):
         self.image = self.run_img[self.step_index // 5]
@@ -101,18 +102,23 @@ class Dinosaur:
         self.dino_rect.y = self.Y_POS
         self.step_index += 1
 
+    def onJump(self):
+        #self.dino_duck = False
+        self.dino_run = False           
+        self.jump_vel = self.JUMP_VEL
+        if self.dinoFirstJump:
+            self.dinoSecondJump = True
+        else:
+            self.dinoFirstJump = True
+
     def jump(self):
         self.image = self.jump_img
-        #if self.dino_doubleJump:
-        #    self.jump_vel = self.JUMP_VEL
-        #    self.dino_doubleJump = False
-        if self.dino_jump:
+        if self.dinoFirstJump:
             self.dino_rect.y -= self.jump_vel * 4
-            self.jump_vel -= 0.8
-        if self.dino_rect.y >= self.Y_POS-10:
-            self.dino_jump = False
-        #    self.dino_doubleJump_allowed = True
-        #    self.dino_doubleJump = False
+            self.jump_vel -= self.JUMP_GRAVITY
+        if self.dino_rect.y >= self.Y_POS:
+            self.dinoFirstJump = False
+            self.dinoSecondJump = False
             self.jump_vel = self.JUMP_VEL
         
     def draw(self, SCREEN):
