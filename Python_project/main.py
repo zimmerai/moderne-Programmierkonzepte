@@ -8,27 +8,27 @@ SCREEN_HEIGHT = 600
 SCREEN_WIDTH = 1100
 SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
-RUNNING = [pygame.image.load(os.path.join("Images/Dino", "DinoRun1.png")),
-           pygame.image.load(os.path.join("Images/Dino", "DinoRun2.png"))]
+RUNNING = [pygame.image.load(os.path.join("Python_project/Images/Dino", "DinoRun1.png")),
+           pygame.image.load(os.path.join("Python_project/Images/Dino", "DinoRun2.png"))]
 
-JUMPING = [pygame.image.load(os.path.join("Images/Dino", "DinoJump.png"))]
+JUMPING = [pygame.image.load(os.path.join("Python_project/Images/Dino", "DinoJump.png"))]
 
-DUCKING = [pygame.image.load(os.path.join("Images/Dino", "DinoDuck1.png")),
-           pygame.image.load(os.path.join("Images/Dino", "DinoDuck2.png"))]
+DUCKING = [pygame.image.load(os.path.join("Python_project/Images/Dino", "DinoDuck1.png")),
+           pygame.image.load(os.path.join("Python_project/Images/Dino", "DinoDuck2.png"))]
 
-SMALL_CACTUS = [pygame.image.load(os.path.join("Images/Cactus", "SmallCactus1.png")),
-                pygame.image.load(os.path.join("Images/Cactus", "SmallCactus2.png")),
-                pygame.image.load(os.path.join("Images/Cactus", "SmallCactus3.png"))]
-LARGE_CACTUS = [pygame.image.load(os.path.join("Images/Cactus", "LargeCactus1.png")),
-                pygame.image.load(os.path.join("Images/Cactus", "LargeCactus2.png")),
-                pygame.image.load(os.path.join("Images/Cactus", "LargeCactus3.png"))]
+SMALL_CACTUS = [pygame.image.load(os.path.join("Python_project/Images/Cactus", "SmallCactus1.png")),
+                pygame.image.load(os.path.join("Python_project/Images/Cactus", "SmallCactus2.png")),
+                pygame.image.load(os.path.join("Python_project/Images/Cactus", "SmallCactus3.png"))]
+LARGE_CACTUS = [pygame.image.load(os.path.join("Python_project/Images/Cactus", "LargeCactus1.png")),
+                pygame.image.load(os.path.join("Python_project/Images/Cactus", "LargeCactus2.png")),
+                pygame.image.load(os.path.join("Python_project/Images/Cactus", "LargeCactus3.png"))]
 
-BIRD = [pygame.image.load(os.path.join("Images/Bird", "Bird1.png")),
-        pygame.image.load(os.path.join("Images/Bird", "Bird2.png"))]
+BIRD = [pygame.image.load(os.path.join("Python_project/Images/Bird", "Bird1.png")),
+        pygame.image.load(os.path.join("Python_project/Images/Bird", "Bird2.png"))]
 
-CLOUD = pygame.image.load(os.path.join("Images/Other", "Cloud.png"))
+CLOUD = pygame.image.load(os.path.join("Python_project/Images/Other", "Cloud.png"))
 
-BG = pygame.image.load(os.path.join("Images/Other", "Track.png"))
+BG = pygame.image.load(os.path.join("Python_project/Images/Other", "Track.png"))
 
 class Dinosaur:
     X_POS = 80
@@ -53,9 +53,9 @@ class Dinosaur:
         if self.dino_duck:
             self.duck()
         if self.dino_run:
-            self.run
+            self.run()
         if self.dino_jump:
-            self.jump
+            self.jump()
 
         if self.step_index >= 10:
             self.step_index = 0
@@ -74,6 +74,7 @@ class Dinosaur:
             self.dino_duck = False
 
     def duck(self):
+        pass
 
     def run(self):
         self.image = self.run_img[self.step_index // 5]
@@ -92,7 +93,8 @@ class Dinosaur:
 
 def main():
     run = True
-    clock = pygame.time.clock()
+    clock = pygame.time.Clock()
+    player = Dinosaur()
 
     while run:
         for event in pygame.event.get():
@@ -106,3 +108,5 @@ def main():
 
         clock.tick(30)
         pygame.display.update()
+
+main()
