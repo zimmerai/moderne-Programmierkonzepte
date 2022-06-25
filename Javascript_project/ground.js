@@ -12,9 +12,9 @@ export function setupGround() {
   setCustomProperty(groundElems[1], "--left", 300)
 }
 
-export function updateGround(timeDifference) {
+export function updateGround(timeDifference, speedScale) {
   groundElems.forEach(ground => {
-    incrementCustomProperty(ground, "--left", timeDifference  *  SPEED * -1)
+    incrementCustomProperty(ground, "--left", timeDifference * speedScale *  SPEED * -1)
 
     if (getCustomProperty(ground, "--left") <= -300) {
       incrementCustomProperty(ground, "--left", 600)

@@ -2,17 +2,20 @@ import { setupGround, updateGround } from "./ground.js"
 
 const WORLD_WIDTH = 100
 const WORLD_HEIGHT = 30
+const SPEED_SCALE_INCREASE = 0.00001
 
-
-const worldElem = document.querySelector("[data-world]")
+const worldElement = document.querySelector("[data-world]")
+const scoreElement = document.querySelector("[data-score]")
+const startScreenElement = document.querySelector("[data-start-screen]")
 
 
 setPixelToWorldScale()
 window.addEventListener("resize", setPixelToWorldScale)
-
-setupGround()
+document.addEventListener("keydown", handleStart, {once: true})
 
 let lastTime
+let speedScale
+let score
 function update(time) {
   if (lastTime == null) {
     lastTime = time
@@ -21,11 +24,31 @@ function update(time) {
   }
   const timeDifference = time - lastTime
 
-  updateGround(timeDifference)
+  updateGround(timeDifference, speedScale)
+  updateSpeedScale(timeDifference)
+  updateScore(timeDifference, speedScale)
   lastTime = time
   window.requestAnimationFrame(update)
 }
-window.requestAnimationFrame(update)
+
+function updateScore(timeDifference, speedScale) {
+  score += (timeDifference *0.005 * speedScale)
+  scoreElement.textContent = Math.floor(score)
+}
+
+function updateSpeedScale(timeDifference){
+  speedScale += timeDifference * SPEED_SCALE_INCREASE
+  console.log(speedScale)
+}
+
+function handleStart() {
+  lastTime = null
+  speedScale = 1
+  score = 0
+  setupGround()
+  startScreenElement.classList.add("hide")
+  window.requestAnimationFrame(update)
+}
 
 function setPixelToWorldScale() {
   let worldToPixelScale
@@ -35,6 +58,6 @@ function setPixelToWorldScale() {
     worldToPixelScale = window.innerHeight / WORLD_HEIGHT
   }
 
-  worldElem.style.width = `${WORLD_WIDTH * worldToPixelScale}px`
-  worldElem.style.height = `${WORLD_HEIGHT * worldToPixelScale}px`
+  worldElement.style.width = `${WORLD_WIDTH * worldToPixelScale}px`
+  worldElement.style.height = `${WORLD_HEIGHT * worldToPixelScale}px`
 }
