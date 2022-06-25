@@ -47,8 +47,8 @@ class Dinosaur:
         self.dino_duck = False
         self.dino_run = True
         self.dino_jump = False
-        self.dino_doubleJump = False
-        self.dino_doubleJump_allowed = True
+        #self.dino_doubleJump = False
+        #self.dino_doubleJump_allowed = True
 
         self.step_index = 0
         self.jump_vel = self.JUMP_VEL
@@ -68,23 +68,23 @@ class Dinosaur:
         if self.step_index >= 10:
             self.step_index = 0
 
-        if userInput[pygame.K_UP]:
+        if userInput[pygame.K_UP] or userInput[pygame.K_SPACE]:
             self.dino_duck = False
             self.dino_run = False
-            self.dino_doubleJump = False
-            if self.dino_jump and self.dino_doubleJump_allowed:
-                self.dino_doubleJump = True
-                self.dino_doubleJump_allowed = False
+            #self.dino_doubleJump = False
+            #if self.dino_jump and self.dino_doubleJump_allowed:
+            #    self.dino_doubleJump = True
+            #    self.dino_doubleJump_allowed = False
             self.dino_jump = True            
         elif userInput[pygame.K_DOWN] and not self.dino_jump:
             self.dino_run = False
             self.dino_jump = False
-            self.dino_doubleJump = False
+            #self.dino_doubleJump = False
             self.dino_duck = True
         elif not (self.dino_jump or userInput[pygame.K_DOWN]):
             self.dino_run = True
             self.dino_jump = False
-            self.dino_doubleJump = False
+            #self.dino_doubleJump = False
             self.dino_duck = False
 
     def duck(self):
@@ -103,16 +103,16 @@ class Dinosaur:
 
     def jump(self):
         self.image = self.jump_img
-        if self.dino_doubleJump:
-            self.jump_vel = self.JUMP_VEL
-            self.dino_doubleJump = False
+        #if self.dino_doubleJump:
+        #    self.jump_vel = self.JUMP_VEL
+        #    self.dino_doubleJump = False
         if self.dino_jump:
             self.dino_rect.y -= self.jump_vel * 4
             self.jump_vel -= 0.8
         if self.dino_rect.y >= self.Y_POS-10:
             self.dino_jump = False
-            self.dino_doubleJump_allowed = True
-            self.dino_doubleJump = False
+        #    self.dino_doubleJump_allowed = True
+        #    self.dino_doubleJump = False
             self.jump_vel = self.JUMP_VEL
         
     def draw(self, SCREEN):
@@ -120,7 +120,7 @@ class Dinosaur:
 
 class Cloud:
     def __init__(self):
-        self.x = SCREEN_WIDTH + random.randint(800, 1000)
+        self.x = SCREEN_WIDTH + random.randint(800, 1800)
         self.y = random.randint(50, 100)
         self.image = CLOUD
         self.width = self.image.get_width()
@@ -128,7 +128,7 @@ class Cloud:
     def update(self):
         self.x -= game_speed
         if self.x < -self.width:
-            self.x = SCREEN_WIDTH + random.randint(2500, 3000)
+            self.x = SCREEN_WIDTH + random.randint(800, 1800)
             self.y = random.randint(50, 100)
 
     def draw(self, SCREEN):
@@ -174,30 +174,32 @@ class Bird(Obstacle):
         SCREEN.blit(self.image[self.index // 5], self.rect)
         self.index += 1
 
-def main():
+def main(highscore):
     global game_speed, x_pos_bg, y_pos_bg, points, obstacles
     run = True
     clock = pygame.time.Clock()
     player = Dinosaur()
-    cloud = Cloud()
+    clouds = [Cloud(), Cloud(), Cloud(), Cloud(), Cloud()]
     game_speed = 14
     x_pos_bg = 0
     y_pos_bg = 380
-    points = 0
+    points = 0    
     font = pygame.font.Font('freesansbold.ttf', 20)
     obstacles = []
     death_count = 0
 
-    def score():
+    def score(highscore):
         global points, game_speed
-        points += 1
+        points += 1        
         if points % 100 == 0:
             game_speed += 1
-
-        text = font.render("Points: " + str(points), True, (0,0,0))
+        if points > highscore:
+            highscore = points
+        text = font.render("Highscore: " + str(highscore) + "  Points: " + str(points), True, (0,0,0))
         textRect = text.get_rect()
-        textRect.center = (1000, 40)
+        textRect.center = (900, 40)
         SCREEN.blit(text, textRect)
+        return highscore
 
     def background():
         global x_pos_bg, y_pos_bg
@@ -234,27 +236,28 @@ def main():
             if player.dino_rect.colliderect(obstacle.rect):
                 #pygame.draw.rect(SCREEN, (255, 0, 0), player.dino_rect, 2)
                 pygame.time.delay(100)
-                death_count += 1
-                menu(death_count)
+                death_count += 1                
+                menu(death_count, highscore)
 
         background()
 
-        cloud.draw(SCREEN)
-        cloud.update()
+        for cloud in clouds:
+            cloud.draw(SCREEN)
+            cloud.update()
 
-        score()
+        highscore = score(highscore)
 
         clock.tick(30)
         pygame.display.update()
 
-def menu(death_count):
+def menu(death_count, highscore):
     global points
     run = True
     while run:
         SCREEN.fill((255, 255, 255))
         font = pygame.font.Font('freesansbold.ttf', 30)
 
-        if death_count == 0:
+        if death_count == 0:                 
             text = font.render("Press any key to start", True, (0,0,0))
         elif death_count > 0:
             text = font.render("Press any key to restart", True, (0,0,0))
@@ -262,6 +265,10 @@ def menu(death_count):
             scoreRect = score.get_rect()
             scoreRect.center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 50)
             SCREEN.blit(score, scoreRect)
+            highscoreText = font.render("Your Highscore: " + str(highscore), True, (0,0,0))
+            highscoreTextRect = highscoreText.get_rect()
+            highscoreTextRect.center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 100)
+            SCREEN.blit(highscoreText, highscoreTextRect)
         textRect = text.get_rect()
         textRect.center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
         SCREEN.blit(text, textRect)
@@ -273,6 +280,6 @@ def menu(death_count):
                 #run == False
                 exit()
             if event.type == pygame.KEYDOWN:
-                main()
+                main(highscore)
 
-menu(death_count=0)
+menu(death_count = 0, highscore=0)
