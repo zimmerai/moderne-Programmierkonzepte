@@ -2,7 +2,6 @@ from email.mime import image
 import pygame
 import os
 import random
-from threading import Timer
 
 pygame.init()
 
@@ -11,6 +10,7 @@ SCREEN_HEIGHT = 600
 SCREEN_WIDTH = 1100
 SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
+#Images
 RUNNING = [pygame.image.load(os.path.join("Python_project/Images/Mario", "Mario1_run.png")),
            pygame.image.load(os.path.join("Python_project/Images/Mario", "Mario2_run.png"))]
 
@@ -20,14 +20,12 @@ DUCKING = [pygame.image.load(os.path.join("Python_project/Images/Mario", "Mario1
            pygame.image.load(os.path.join("Python_project/Images/Mario", "Mario2_duck.png"))]
 
 VIRUS = [pygame.image.load(os.path.join("Python_project/Images/Enemy", "Enemy2_coloured.png"))]
-                #pygame.image.load(os.path.join("Python_project/Images/Enemy", "Enemy2_coloured.png"))]
-                #pygame.image.load(os.path.join("Python_project/Images/Cactus", "SmallCactus3.png"))]
+                
 SNAKE = [pygame.image.load(os.path.join("Python_project/Images/Enemy", "Enemy1_coloured.png"))]
-                #pygame.image.load(os.path.join("Python_project/Images/Cactus", "LargeCactus2.png")),
-                #pygame.image.load(os.path.join("Python_project/Images/Cactus", "LargeCactus3.png"))]
+               
 
 BULLET = [pygame.image.load(os.path.join("Python_project/Images/Bullet", "Bullet.png"))]
-        #pygame.image.load(os.path.join("Python_project/Images/Bird", "Bird2.png"))]
+        
 
 CLOUD = pygame.image.load(os.path.join("Python_project/Images/Other", "Cloud.png"))
 
@@ -39,7 +37,7 @@ class Dinosaur:
     Y_POS_DUCK = 300
     JUMP_VEL = 8.5
     JUMP_GRAVITY = 1.4
-    TIMER_COOLDOWN = 5
+    JUMP_TIMER_COOLDOWN = 5
 
     def __init__(self):
         self.duck_img = DUCKING
@@ -48,12 +46,11 @@ class Dinosaur:
 
         self.dino_duck = False
         self.dino_run = True
-        self.dinoFirstJump = False
-        self.dinoSecondJump = False
-        self.jumpTimer = 0
+        self.dinoFirstJump = False        
+        self.dinoJumpTimer = self.JUMP_TIMER_COOLDOWN
         self.dinoJumpCount = 0
 
-        self.step_index = 0
+        self.step_index = 0 #for the Animation
         self.jump_vel = self.JUMP_VEL
         self.image = self.run_img[0]
         self.dino_rect = self.image.get_rect()
@@ -71,7 +68,8 @@ class Dinosaur:
         if self.step_index >= 10:
             self.step_index = 0
 
-        if (userInput[pygame.K_SPACE] or userInput[pygame.K_UP]) and not self.dinoSecondJump and (self.jumpTimer == 0 or self.jumpTimer > self.TIMER_COOLDOWN) and self.dinoJumpCount <= 2: 
+        #Interaction with User / Events
+        if (userInput[pygame.K_SPACE] or userInput[pygame.K_UP]) and (self.dinoJumpTimer == self.JUMP_TIMER_COOLDOWN or self.dinoJumpTimer < 0) and self.dinoJumpCount <= 2: 
             self.onJump()         
 
         elif userInput[pygame.K_DOWN] and not self.dinoFirstJump:
@@ -92,7 +90,6 @@ class Dinosaur:
         self.dino_rect.y = self.Y_POS_DUCK
         self.step_index += 1    
 
-
     def run(self):
         self.image = self.run_img[self.step_index // 5]
         self.dino_rect = self.image.get_rect()
@@ -112,13 +109,11 @@ class Dinosaur:
         if self.dinoFirstJump:
             self.dino_rect.y -= self.jump_vel * 4
             self.jump_vel -= self.JUMP_GRAVITY
-            self.jumpTimer += 1
-            print(str(self.jumpTimer))
+            self.dinoJumpTimer -= 1            
         if self.dino_rect.y >= self.Y_POS:
             self.dinoFirstJump = False
-            self.dinoSecondJump = False
             self.dinoJumpCount = 0
-            self.jumpTimer = 0
+            self.dinoJumpTimer = self.JUMP_TIMER_COOLDOWN
             self.jump_vel = self.JUMP_VEL
         
     def draw(self, SCREEN):
@@ -157,18 +152,16 @@ class Obstacle:
         SCREEN.blit(self.image[self.type], self.rect)
 
 class Virus(Obstacle):
-    def __init__(self, image):
-        #self.type = random.randint(0,1)
+    def __init__(self, image):        
         self.type = 0
         super().__init__(image, self.type)
         self.rect.y = 325
 
 class Snake(Obstacle):
     def __init__(self, image):
-       # self.type = random.randint(0,1)
         self.type = 0
         super().__init__(image, self.type)
-        self.rect.y = 260
+        self.rect.y = 290
 
 class Bullet(Obstacle):
     def __init__(self, image):
@@ -176,12 +169,6 @@ class Bullet(Obstacle):
         super().__init__(image, self.type)
         self.rect.y = 220
         self.index = 0
-
-    #def draw(self, SCREEN):
-        #if self.index >= 9:
-        #    self.index = 0
-        #SCREEN.blit(self.image, self.rect)
-        #self.index += 1
 
 def main(highscore):
     global game_speed, x_pos_bg, y_pos_bg, points, obstacles
@@ -220,6 +207,7 @@ def main(highscore):
             x_pos_bg = 0
         x_pos_bg -= game_speed
 
+    # Main Game LOOP
     while run:
         for event in pygame.event.get():
             if event.type == pygame.QUIT or event.type == pygame.K_ESCAPE:
@@ -230,6 +218,7 @@ def main(highscore):
         player.draw(SCREEN)
         player.update(userInput)
 
+        #Creation of Obstacles
         if len(obstacles) == 0:
             if random.randint(0,2) == 0:
                 obstacles.append(Virus(VIRUS))
@@ -265,6 +254,7 @@ def menu(death_count, highscore):
         SCREEN.fill((255, 255, 255))
         font = pygame.font.Font('freesansbold.ttf', 30)
 
+        # Text on Screen
         if death_count == 0:                 
             text = font.render("Press any key to start", True, (0,0,0))
         elif death_count > 0:
@@ -283,11 +273,11 @@ def menu(death_count, highscore):
         SCREEN.blit(RUNNING[0], (SCREEN_WIDTH // 2 -20, SCREEN_HEIGHT // 2 -140))
         pygame.display.update()
 
+        # Event Handling
         for event in pygame.event.get():
             if event.type == pygame.QUIT or event.type == pygame.K_ESCAPE:
                 exit()
             if event.type == pygame.KEYDOWN:
-                print("Keydown ist pressed")
                 main(highscore)
 
 menu(death_count = 0, highscore=0)
