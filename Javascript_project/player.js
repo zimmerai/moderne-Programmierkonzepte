@@ -16,8 +16,8 @@ export function setupPlayer () {
     currentAnimationTime = 0
     yVelocity = 0 
     setCustomProperty(playerElement, "--bottom", 0)
-    document.removeEventListener("keydown", onJump)
-    document.addEventListener("keydown", onJump)
+    document.removeEventListener("keydown", onCLick)
+    document.addEventListener("keydown", onCLick)
 }
 
 export function updatePlayer (timeDifference, speedScale) {
@@ -49,7 +49,7 @@ function handleJump (timeDifference) {
 
     incrementCustomProperty(playerElement, "--bottom", yVelocity * timeDifference)
     
-    if (getCustomProperty(playerElement, "--bottom") <= 0){
+    if (getCustomProperty(playerElement, "--bottom") < 0){
         setCustomProperty(playerElement, "--bottom", 0)
         jumpCounter = 0
     }
@@ -57,9 +57,23 @@ function handleJump (timeDifference) {
 
 }
 
-function onJump(e) {
-    if (e.code !== "Space" || jumpCounter >= 2) return
 
-    yVelocity = JUMP_SPEED
-    jumpCounter += 1
-}
+ function onCLick(e) {
+    //crouch/shrink Function
+    if (jumpCounter === 0 && e.code === "ArrowDown" || e.code === "KeyC" || e.code === "KeyS") {
+        setTimeout(function() { 
+            setCustomProperty(playerElement, "--height", 25)
+            return
+        }, 500);
+        setCustomProperty(playerElement, "--height", 18)
+    //jump Function
+    } else if (jumpCounter <= 2 && e.code === "Space" || jumpCounter < 2 && e.code === "ArrowUp" || jumpCounter < 2 && e.code === "KeyW") {
+        jumpCounter += 1
+        yVelocity = JUMP_SPEED
+    //escape Function
+    } else if (jumpCounter >= 2) {
+        return
+    }
+
+
+} 

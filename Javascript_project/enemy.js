@@ -43,13 +43,16 @@ import {
     let calculateEnemyType
     const enemy = document.createElement("img")
     enemy.dataset.enemy = true
-    calculateEnemyType = Math.random() * 100
-    if (calculateEnemyType <= 50) {
+    calculateEnemyType = Math.random() * 30
+    if (calculateEnemyType <= 10) {
         enemy.src = "img/Enemy1-coloured.png"
         enemy.classList.add("enemy1")
-    } else {
+    } else if ( calculateEnemyType > 10 && calculateEnemyType >= 20) {
         enemy.src = "img/Enemy2_coloured.png"
         enemy.classList.add("enemy2")
+    } else {
+        enemy.src = "img/Bullet.png"
+        enemy.classList.add("enemy3")
     }
     setCustomProperty(enemy, "--left", 100)
     worldElem.append(enemy)

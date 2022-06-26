@@ -50,9 +50,10 @@
   
   .player {
     --bottom: 0;
+    --height: 25;
     position: absolute;
     left: 1%;
-    height: 20%;
+    height: calc(var(--height) * 1%);
     bottom: calc(var(--bottom) * 1%);
   }
   
@@ -68,6 +69,13 @@
     left: calc(var(--left) * 1%);
     height: 12%;
     bottom: 0;
+  }
+
+  .enemy3 {
+    position: absolute;
+    left: calc(var(--left) * 1%);
+    height: 22%;
+    bottom: 22%;
   }
 
   .cloud {
