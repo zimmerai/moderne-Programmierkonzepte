@@ -4,7 +4,7 @@ import {
     getCustomProperty,
   } from "./updateCustomProperty.js"
   
-  const SPEED = 0.001
+  const SPEED = 0.002
   const worldElem = document.querySelector("[data-world]")
   
 
@@ -21,22 +21,32 @@ import {
   export function updateClouds(timeDifference, speedScale) {
     document.querySelectorAll("[data-cloud]").forEach(cloud => {
       incrementCustomProperty(cloud, "--left", timeDifference * speedScale * SPEED * -1)
-      if (getCustomProperty(cloud, "--left") <= -10) {
+      if (getCustomProperty(cloud, "--left") <= -8) {
         cloud.remove()
-        createClouds()
+        createCloud()
       }
     })
 
   }
   
   
+ function createCloud() {
+    const cloud = document.createElement("img")
+    cloud.dataset.cloud = true
+    cloud.src = "img/Cloud.png"
+    cloud.classList.add("cloud")
+    setCustomProperty(cloud, "--bottom", randomNumberBetween(15,50))
+    setCustomProperty(cloud, "--left", 100)
+    worldElem.append(cloud)
+  }
+
   function createClouds() {
     const cloud = document.createElement("img")
     cloud.dataset.cloud = true
     cloud.src = "img/Cloud.png"
     cloud.classList.add("cloud")
-    setCustomProperty(cloud, "--bottom", randomNumberBetween(25,80))
-    setCustomProperty(cloud, "--left", randomNumberBetween(50,100))
+    setCustomProperty(cloud, "--bottom", randomNumberBetween(15,50))
+    setCustomProperty(cloud, "--left", randomNumberBetween(5,100))
     worldElem.append(cloud)
   }
   

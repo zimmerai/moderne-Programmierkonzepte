@@ -73,6 +73,6 @@
   .cloud {
     position: absolute;
     left: calc(var(--left) * 1%);
-    height: 20%;
+    height: 30%;
     bottom: calc(var(--bottom) * 1%);
   }
