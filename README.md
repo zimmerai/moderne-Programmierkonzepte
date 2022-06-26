@@ -2,7 +2,7 @@
 Sammlung von allen 3 Jump and Run Projekten
 
 # Tutorials und eigene Erweiterungen
-Wir haben alle als Grundlage für unseren Code ein Tutorial für das Chrome-Dino-Game gemacht und alles darüber hinaus wenn nicht anders gekennzeichnet eigenständig programmiert
+Wir haben alle als Grundlage für unseren Code ein Tutorial für das Chrome-Dino-Game genutzt und alles darüber hinaus wenn nicht anders gekennzeichnet eigenständig programmiert
 
 ## JAVA (Lisa)
 ### Tutorial
@@ -11,12 +11,26 @@ Wir haben alle als Grundlage für unseren Code ein Tutorial für das Chrome-Dino
 ### Eigene Erweiterungen
 
 ## JavaScript (Aidan)
+### Controls
+* Springen: "W", "Space" oder "Pfeil nach oben"
+* Ducken: "S", "C" oder "Pfeil nach unten"
+
 ### Tutorial
-[Part 1: Setup and Dino Animation](https://www.youtube.com/watch?v=wnBGG7JLrkg&ab_channel=CodeBucket)
+[How To Create Your First Game - JavaScript](https://www.youtube.com/watch?v=47eXVRJKdkU)
 
 ### Eigene Erweiterungen
+* Einfügen anderer Bilder und notwendige Anpassungen im Code wegen Position, Größe, etc. 
+* Mehrere Wolken in unterschiedlichen Höhen, die langsamer als der Boden sind
+* Verschiedene Tastatureingaben zur Steuerung (Space, Pfeil hoch, "W" zum Springen; Pfeil runter, "S" und "C"zum Ducken bzw. Schrumpfen)
+* Highscore
+* Einfügen von unterschiedlichen Gegnern (Kaktus, Schlange und Rakete)
+* Double Jump 
 
 ## Python (Johanna)
+### Controls
+* Springen: "W", "Space" oder "Pfeil nach oben"
+* Ducken: "S" oder "Pfeil nach unten"
+
 ### Tutorialreihe
 * [Part 1: Setup and Dino Animation](https://www.youtube.com/watch?v=wnBGG7JLrkg&ab_channel=CodeBucket)
 * [Part 2: Jumping and Ducking Motion](https://www.youtube.com/watch?v=aAkO8Pketkg&ab_channel=CodeBucket)
@@ -27,7 +41,7 @@ Wir haben alle als Grundlage für unseren Code ein Tutorial für das Chrome-Dino
 Dieses Projekt ist meine erste Python-Erfahrung und daher habe ich viel Zeit verwendet, um mich in Python einzuarbeiten.
 * Einfügen anderer Bilder und notwendige Anpassungen im Code wegen Position, Größe, etc. 
 * Mehrere Wolken in unterschiedlichen Höhen, die langsamer als der Boden sind
-* Verschieden Tastatureingaben zur Steuerung (Space, Pfeil hoch, w zum Springen; Pfeil runter und s zum Ducken bzw. Schrumpfen; ESC zum Beenden)
+* Verschieden Tastatureingaben zur Steuerung (Space, Pfeil hoch, "W" zum Springen; Pfeil runter und "S" zum Ducken bzw. Schrumpfen; ESC zum Beenden)
 * Highscore, der auf beiden Screens angezeigt werden kann (Menu- und Spiel-Screen)
 * Umwandlung des Vogels zu einer Rakete, die schneller als der Boden ist
 * Double Jump 
