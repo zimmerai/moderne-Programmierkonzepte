@@ -69,16 +69,16 @@ class Dinosaur:
             self.step_index = 0
 
         #Interaction with User / Events
-        if (userInput[pygame.K_SPACE] or userInput[pygame.K_UP]) and (self.dinoJumpTimer == self.JUMP_TIMER_COOLDOWN or self.dinoJumpTimer < 0) and self.dinoJumpCount <= 2: 
+        if (userInput[pygame.K_SPACE] or userInput[pygame.K_UP] or userInput[pygame.K_w]) and (self.dinoJumpTimer == self.JUMP_TIMER_COOLDOWN or self.dinoJumpTimer < 0) and self.dinoJumpCount <= 2: 
             self.onJump()         
 
-        elif userInput[pygame.K_DOWN] and not self.dinoFirstJump:
+        elif (userInput[pygame.K_DOWN] or userInput[pygame.K_s]) and not self.dinoFirstJump:
             self.dino_run = False
             self.dino_jump = False
             self.dino_doubleJump = False
             self.dino_duck = True
 
-        elif not (self.dinoFirstJump or userInput[pygame.K_DOWN]): 
+        elif not (self.dinoFirstJump or userInput[pygame.K_DOWN] or userInput[pygame.K_s] ): 
             self.dino_run = True
             self.dinoFirstJump = False
             self.dino_duck = False
@@ -164,11 +164,18 @@ class Snake(Obstacle):
         self.rect.y = 290
 
 class Bullet(Obstacle):
+    BULLET_VEL = 5
     def __init__(self, image):
         self.type = 0
         super().__init__(image, self.type)
         self.rect.y = 220
         self.index = 0
+
+    def update(self):
+        self.rect.x -= game_speed + self.BULLET_VEL
+        if self.rect.x < -self.rect.width:
+            obstacles.pop()
+
 
 def main(highscore):
     global game_speed, x_pos_bg, y_pos_bg, points, obstacles
