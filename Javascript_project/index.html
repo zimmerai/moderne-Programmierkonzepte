@@ -1,17 +1,20 @@
 <!DOCTYPE html>
-<html lang="de">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>JumpNRun</title>
-        <link rel="stylesheet" href="styles.css" />
-    </head>
-    <body>
-        <div class="game">
-            <div class="player"></div>
-            <div id="obstacle"></div>
-        </div>
-
-        <script src="main.js"></script>
-    </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" type="module"></script>
+</head>
+<body>
+  <div class="world" data-world>
+    <div class="score" data-score>0</div>
+    <div class="start-screen" data-start-screen>Press Any Key To Start <img src="img/replay_button.png" > </div>
+    <img src="img/ground.png" class="ground" data-ground>
+    <img src="img/ground.png" class="ground" data-ground>
+    <img src="img/Mario_klein1.png" class="player" data-player>
+  </div>
+</body>
 </html>
