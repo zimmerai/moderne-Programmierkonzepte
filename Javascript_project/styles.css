@@ -51,9 +51,16 @@
     bottom: calc(var(--bottom) * 1%);
   }
   
-  .cactus {
+  .enemy1 {
     position: absolute;
     left: calc(var(--left) * 1%);
-    height: 30%;
+    height: 20%;
+    bottom: 0;
+  }
+
+  .enemy2 {
+    position: absolute;
+    left: calc(var(--left) * 1%);
+    height: 12%;
     bottom: 0;
   }
