@@ -19,12 +19,12 @@ JUMPING = pygame.image.load(os.path.join("Python_project/Images/Mario", "Mario1_
 #DUCKING = [pygame.image.load(os.path.join("Python_project/Images/Dino", "DinoDuck1.png")),
 #           pygame.image.load(os.path.join("Python_project/Images/Dino", "DinoDuck2.png"))]
 
-SMALL_CACTUS = [pygame.image.load(os.path.join("Python_project/Images/Cactus", "SmallCactus1.png")),
-                pygame.image.load(os.path.join("Python_project/Images/Cactus", "SmallCactus2.png")),
-                pygame.image.load(os.path.join("Python_project/Images/Cactus", "SmallCactus3.png"))]
-LARGE_CACTUS = [pygame.image.load(os.path.join("Python_project/Images/Cactus", "LargeCactus1.png")),
-                pygame.image.load(os.path.join("Python_project/Images/Cactus", "LargeCactus2.png")),
-                pygame.image.load(os.path.join("Python_project/Images/Cactus", "LargeCactus3.png"))]
+VIRUS = [pygame.image.load(os.path.join("Python_project/Images/Enemy", "Enemy2_coloured.png"))]
+                #pygame.image.load(os.path.join("Python_project/Images/Enemy", "Enemy2_coloured.png"))]
+                #pygame.image.load(os.path.join("Python_project/Images/Cactus", "SmallCactus3.png"))]
+SNAKE = [pygame.image.load(os.path.join("Python_project/Images/Enemy", "Enemy1_coloured.png"))]
+                #pygame.image.load(os.path.join("Python_project/Images/Cactus", "LargeCactus2.png")),
+                #pygame.image.load(os.path.join("Python_project/Images/Cactus", "LargeCactus3.png"))]
 
 BIRD = [pygame.image.load(os.path.join("Python_project/Images/Bird", "Bird1.png")),
         pygame.image.load(os.path.join("Python_project/Images/Bird", "Bird2.png"))]
@@ -57,6 +57,11 @@ class Dinosaur:
         self.dino_rect.x = self.X_POS
         self.dino_rect.y = self.Y_POS
 
+    def interaction(self, userInput):
+         if userInput == pygame.K_SPACE and not self.dinoSecondJump:
+            print("Space is pressed")
+            self.onJump()
+
     def update(self, userInput):
         #if self.dino_duck:
         #    self.duck()
@@ -68,18 +73,20 @@ class Dinosaur:
         if self.step_index >= 10:
             self.step_index = 0
 
-        if userInput[pygame.K_SPACE] and not self.dinoSecondJump:
-            self.onJump()
+        #for event in pygame.event.get():   
+        #    if event.type == pygame.K_SPACE and not self.dinoSecondJump:
+        #        print("Space is pressed")
+        #        self.onJump()
 
-        #if (userInput[pygame.KEYUP] or userInput[pygame.K_SPACE]) and self.dinoFirstJump and not self.dinoSecondJump:
-         #   self.onJump()    
-            
+        if userInput[pygame.K_SPACE] and not self.dinoSecondJump:
+            self.onJump()            
 
         #elif userInput[pygame.K_DOWN] and not self.dino_jump:
            # self.dino_run = False
            # self.dino_jump = False
             #self.dino_doubleJump = False
            # self.dino_duck = True
+
         elif not (self.dinoFirstJump ): #or userInput[pygame.K_DOWN]
             self.dino_run = True
             self.dinoFirstJump = False
@@ -155,17 +162,19 @@ class Obstacle:
     def draw(self, SCREEN):
         SCREEN.blit(self.image[self.type], self.rect)
 
-class SmallCactus(Obstacle):
+class Virus(Obstacle):
     def __init__(self, image):
-        self.type = random.randint(0,2)
+        #self.type = random.randint(0,1)
+        self.type = 0
         super().__init__(image, self.type)
         self.rect.y = 325
 
-class LargeCactus(Obstacle):
+class Snake(Obstacle):
     def __init__(self, image):
-        self.type = random.randint(0,2)
+       # self.type = random.randint(0,1)
+        self.type = 0
         super().__init__(image, self.type)
-        self.rect.y = 300
+        self.rect.y = 260
 
 class Bird(Obstacle):
     def __init__(self, image):
@@ -220,19 +229,22 @@ def main(highscore):
     while run:
         for event in pygame.event.get():
             if event.type == pygame.QUIT or event.type == pygame.K_ESCAPE:
-                #run = False
                 exit()
         SCREEN.fill((255, 255, 255))
         userInput = pygame.key.get_pressed()
+        
+        ##for event in pygame.event.get():
+        ##    userInput = event.type
+        ##    player.interaction(userInput)
 
         player.draw(SCREEN)
         player.update(userInput)
 
         if len(obstacles) == 0:
             if random.randint(0,2) == 0:
-                obstacles.append(SmallCactus(SMALL_CACTUS))
+                obstacles.append(Virus(VIRUS))
             elif random.randint(0,2) == 1:
-                obstacles.append(LargeCactus(LARGE_CACTUS))
+                obstacles.append(Snake(SNAKE))
             elif random.randint(0,2) == 2:
                 obstacles.append(Bird(BIRD))
         
@@ -283,9 +295,9 @@ def menu(death_count, highscore):
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT or event.type == pygame.K_ESCAPE:
-                #run == False
                 exit()
             if event.type == pygame.KEYDOWN:
+                print("Keydown ist pressed")
                 main(highscore)
 
 menu(death_count = 0, highscore=0)
