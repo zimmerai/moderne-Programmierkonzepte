@@ -1,7 +1,7 @@
 import { incrementCustomProperty, getCustomProperty, setCustomProperty } from "./updateCustomProperty.js"
 
 const playerElement = document.querySelector("[data-player]")
-const JUMP_SPEED = 0.45
+const JUMP_SPEED = 0.40
 const GRAVITY = 0.0025
 const PLAYER_ANIMATION_COUNT = 2
 const ANIMATION_TIME = 150
@@ -24,6 +24,10 @@ export function updatePlayer (timeDifference, speedScale) {
     handleRun(timeDifference, speedScale)
     handleJump(timeDifference)
 
+}
+
+export function getPlayerRect() {
+    return playerElement.getBoundingClientRect()
 }
 
 function handleRun (timeDifference, speedScale) {
@@ -49,7 +53,6 @@ function handleJump (timeDifference) {
         setCustomProperty(playerElement, "--bottom", 0)
         jumpCounter = 0
     }
-    console.log(yVelocity) 
     yVelocity -= GRAVITY * timeDifference
 
 }
