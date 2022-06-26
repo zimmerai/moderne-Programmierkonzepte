@@ -67,7 +67,7 @@ function handleJump (timeDifference) {
         }, 500);
         setCustomProperty(playerElement, "--height", 18)
     //jump Function
-    } else if (jumpCounter <= 2 && e.code === "Space" || jumpCounter < 2 && e.code === "ArrowUp" || jumpCounter < 2 && e.code === "KeyW") {
+    } else if (jumpCounter < 2 && e.code === "Space" || jumpCounter < 2 && e.code === "ArrowUp" || jumpCounter < 2 && e.code === "KeyW") {
         jumpCounter += 1
         yVelocity = JUMP_SPEED
     //escape Function

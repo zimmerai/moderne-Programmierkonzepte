@@ -5,8 +5,9 @@ import {
   } from "./updateCustomProperty.js"
   
   const SPEED = 0.05
-  const ENEMY_INTERVAL_MIN = 500
-  const ENEMY_INTERVAL_MAX = 2000
+  const SPEED_BULLET = 0.08
+  const ENEMY_INTERVAL_MIN = 1000
+  const ENEMY_INTERVAL_MAX = 2500
   const worldElem = document.querySelector("[data-world]")
   
   let nextEnemyTime
@@ -19,7 +20,11 @@ import {
   
   export function updateEnemy(timeDifference, speedScale) {
     document.querySelectorAll("[data-enemy]").forEach(enemy => {
-      incrementCustomProperty(enemy, "--left", timeDifference * speedScale * SPEED * -1)
+    if (enemy.className == "enemy3") {
+        incrementCustomProperty(enemy, "--left", timeDifference * speedScale * SPEED_BULLET * -1)
+    } else {
+        incrementCustomProperty(enemy, "--left", timeDifference * speedScale * SPEED * -1)
+    }
       if (getCustomProperty(enemy, "--left") <= -100) {
         enemy.remove()
       }
