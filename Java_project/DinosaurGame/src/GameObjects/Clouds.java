@@ -13,7 +13,7 @@ public class Clouds {
     private List<Cloud> clouds;
 
     public Clouds() {
-        cloudImage = Resource.getResourceImage("data/cloud.PNG");
+        cloudImage = Resource.getResourceImage("Java_project/DinosaurGame/data/cloud.PNG");
         clouds = new ArrayList<Cloud>();
         Cloud cloud1 = new Cloud();
         cloud1.posX = 100;
