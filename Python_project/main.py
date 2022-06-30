@@ -36,7 +36,7 @@ class Mario:
     Y_POS = 260
     Y_POS_DUCK = 300
     JUMP_VEL = 8.5
-    JUMP_GRAVITY = 1
+    JUMP_GRAVITY = 0.8
     JUMP_TIMER_COOLDOWN = 10
 
     def __init__(self):
@@ -107,7 +107,7 @@ class Mario:
     def jump(self):
         self.image = self.jump_img
         if self.marioFirstJump:
-            self.mario_rect.y -= self.jump_vel * 4
+            self.mario_rect.y -= self.jump_vel * 2
             self.jump_vel -= self.JUMP_GRAVITY
             self.marioJumpTimer -= 1            
         if self.mario_rect.y >= self.Y_POS:
@@ -120,15 +120,16 @@ class Mario:
         SCREEN.blit(self.image, (self.mario_rect.x, self.mario_rect.y))
 
 class Cloud:
-    CLOUD_DELAY = 12
+    CLOUD_DELAY = 2
     def __init__(self):
         self.x = SCREEN_WIDTH + random.randint(50, 1000)
         self.y = random.randint(50, 100)
         self.image = CLOUD
         self.width = self.image.get_width()
+        print("Cloud initialized" + str(self.x))
 
     def update(self):
-        self.x -= game_speed-self.CLOUD_DELAY
+        self.x -= game_speed/2
         if self.x < -self.width:
             self.x = SCREEN_WIDTH + random.randint(50, 1000)
             self.y = random.randint(50, 200)
@@ -222,9 +223,6 @@ def main(highscore):
         SCREEN.fill((255, 255, 255))
         userInput = pygame.key.get_pressed()    
 
-        player.draw(SCREEN)
-        player.update(userInput)
-
         #Creation of Obstacles
         if len(obstacles) == 0:
             if random.randint(0,2) == 0:
@@ -248,6 +246,9 @@ def main(highscore):
         for cloud in clouds:
             cloud.draw(SCREEN)
             cloud.update()
+
+        player.draw(SCREEN)
+        player.update(userInput)
 
         highscore = score(highscore)
 
