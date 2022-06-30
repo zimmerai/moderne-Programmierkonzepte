@@ -3,6 +3,8 @@ import pygame
 import os
 import random
 
+from highscore import storeHighscore
+
 pygame.init()
 
 #GlobalConstants
@@ -238,7 +240,8 @@ def main(highscore):
             if player.mario_rect.colliderect(obstacle.rect):
                 #pygame.draw.rect(SCREEN, (255, 0, 0), player.mario_rect, 2)
                 pygame.time.delay(100)
-                death_count += 1                
+                death_count += 1    
+                storeHighscore(highscore)            
                 menu(death_count, highscore)
 
         background()
