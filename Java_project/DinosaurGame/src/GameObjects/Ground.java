@@ -19,9 +19,9 @@ public class Ground {
 
     public Ground(GameScreen game) {
         random = new Random();
-        imageGround1 = Resource.getResourceImage("data/ground1.png");
-        imageGround2 = Resource.getResourceImage("data/ground2.png");
-        imageGround3 = Resource.getResourceImage("data/ground3.png");
+        imageGround1 = Resource.getResourceImage("Java_project/DinosaurGame/data/ground1.png");
+        imageGround2 = Resource.getResourceImage("Java_project/DinosaurGame/data/ground2.png");
+        imageGround3 = Resource.getResourceImage("Java_project/DinosaurGame/data/ground3.png");
         imageList = new ArrayList<ImageGround>();
         int numberOfGroundTitle = 600 / imageGround1.getWidth() + 2;
         for (int i = 0; i < numberOfGroundTitle; i++) {

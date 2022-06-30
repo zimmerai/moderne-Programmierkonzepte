@@ -44,7 +44,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
         ground = new Ground(this);
         clouds = new Clouds();
         enemyManager = new EnemyManager(mainCharacter, this);
-        imageGameOverText = Resource.getResourceImage("data/gameover_text.png");
+        imageGameOverText = Resource.getResourceImage("Java_project/DinosaurGame/data/gameover_text.png");
     }
 
     public void startGame() {
