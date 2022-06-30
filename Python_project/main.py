@@ -31,7 +31,7 @@ CLOUD = pygame.image.load(os.path.join("Python_project/Images/Other", "Cloud.png
 
 BG = pygame.image.load(os.path.join("Python_project/Images/Other", "Track.png"))
 
-class Dinosaur:
+class Mario:
     X_POS = 80
     Y_POS = 260
     Y_POS_DUCK = 300
@@ -44,80 +44,80 @@ class Dinosaur:
         self.run_img = RUNNING
         self.jump_img = JUMPING
 
-        self.dino_duck = False
-        self.dino_run = True
-        self.dinoFirstJump = False        
-        self.dinoJumpTimer = self.JUMP_TIMER_COOLDOWN
-        self.dinoJumpCount = 0
+        self.mario_duck = False
+        self.mario_run = True
+        self.marioFirstJump = False        
+        self.marioJumpTimer = self.JUMP_TIMER_COOLDOWN
+        self.marioJumpCount = 0
 
         self.step_index = 0 #for the Animation
         self.jump_vel = self.JUMP_VEL
         self.image = self.run_img[0]
-        self.dino_rect = self.image.get_rect()
-        self.dino_rect.x = self.X_POS
-        self.dino_rect.y = self.Y_POS
+        self.mario_rect = self.image.get_rect()
+        self.mario_rect.x = self.X_POS
+        self.mario_rect.y = self.Y_POS
 
     def update(self, userInput):
-        if self.dino_duck:
+        if self.mario_duck:
             self.duck()
-        if self.dino_run:
+        if self.mario_run:
             self.run()
-        if self.dinoFirstJump:
+        if self.marioFirstJump:
             self.jump()
 
         if self.step_index >= 10:
             self.step_index = 0
 
         #Interaction with User / Events
-        if (userInput[pygame.K_SPACE] or userInput[pygame.K_UP] or userInput[pygame.K_w]) and (self.dinoJumpTimer == self.JUMP_TIMER_COOLDOWN or self.dinoJumpTimer < 0) and self.dinoJumpCount <= 2: 
+        if (userInput[pygame.K_SPACE] or userInput[pygame.K_UP] or userInput[pygame.K_w]) and (self.marioJumpTimer == self.JUMP_TIMER_COOLDOWN or self.marioJumpTimer < 0) and self.marioJumpCount <= 2: 
             self.onJump()         
 
-        elif (userInput[pygame.K_DOWN] or userInput[pygame.K_s]) and not self.dinoFirstJump:
-            self.dino_run = False
-            self.dino_jump = False
-            self.dino_doubleJump = False
-            self.dino_duck = True
+        elif (userInput[pygame.K_DOWN] or userInput[pygame.K_s]) and not self.marioFirstJump:
+            self.mario_run = False
+            self.mario_jump = False
+            self.mario_doubleJump = False
+            self.mario_duck = True
 
-        elif not (self.dinoFirstJump or userInput[pygame.K_DOWN] or userInput[pygame.K_s] ): 
-            self.dino_run = True
-            self.dinoFirstJump = False
-            self.dino_duck = False
+        elif not (self.marioFirstJump or userInput[pygame.K_DOWN] or userInput[pygame.K_s] ): 
+            self.mario_run = True
+            self.marioFirstJump = False
+            self.mario_duck = False
 
     def duck(self):
         self.image = self.duck_img[self.step_index // 5]
-        self.dino_rect = self.image.get_rect()
-        self.dino_rect.x = self.X_POS
-        self.dino_rect.y = self.Y_POS_DUCK
+        self.mario_rect = self.image.get_rect()
+        self.mario_rect.x = self.X_POS
+        self.mario_rect.y = self.Y_POS_DUCK
         self.step_index += 1    
 
     def run(self):
         self.image = self.run_img[self.step_index // 5]
-        self.dino_rect = self.image.get_rect()
-        self.dino_rect.x = self.X_POS
-        self.dino_rect.y = self.Y_POS
+        self.mario_rect = self.image.get_rect()
+        self.mario_rect.x = self.X_POS
+        self.mario_rect.y = self.Y_POS
         self.step_index += 1
 
     def onJump(self):
-        self.dino_duck = False
-        self.dino_run = False           
+        self.mario_duck = False
+        self.mario_run = False           
         self.jump_vel = self.JUMP_VEL     
-        self.dinoFirstJump = True
-        self.dinoJumpCount += 1
+        self.marioFirstJump = True
+        self.marioJumpCount += 1
 
     def jump(self):
         self.image = self.jump_img
-        if self.dinoFirstJump:
-            self.dino_rect.y -= self.jump_vel * 4
+        if self.marioFirstJump:
+            self.mario_rect.y -= self.jump_vel * 4
             self.jump_vel -= self.JUMP_GRAVITY
-            self.dinoJumpTimer -= 1            
-        if self.dino_rect.y >= self.Y_POS:
-            self.dinoFirstJump = False
-            self.dinoJumpCount = 0
-            self.dinoJumpTimer = self.JUMP_TIMER_COOLDOWN
+            self.marioJumpTimer -= 1            
+        if self.mario_rect.y >= self.Y_POS:
+            self.marioFirstJump = False
+            self.marioJumpCount = 0
+            self.marioJumpTimer = self.JUMP_TIMER_COOLDOWN
             self.jump_vel = self.JUMP_VEL
         
     def draw(self, SCREEN):
-        SCREEN.blit(self.image, (self.dino_rect.x, self.dino_rect.y))
+        SCREEN.blit(self.image, (self.mario_rect.x, self.mario_rect.y))
 
 class Cloud:
     CLOUD_DELAY = 12
@@ -181,7 +181,7 @@ def main(highscore):
     global game_speed, x_pos_bg, y_pos_bg, points, obstacles
     run = True
     clock = pygame.time.Clock()
-    player = Dinosaur()
+    player = Mario()
     clouds = [Cloud(), Cloud(), Cloud(), Cloud(), Cloud()]
     game_speed = 14
     x_pos_bg = 0
@@ -237,8 +237,8 @@ def main(highscore):
         for obstacle in obstacles:
             obstacle.draw(SCREEN)
             obstacle.update()
-            if player.dino_rect.colliderect(obstacle.rect):
-                #pygame.draw.rect(SCREEN, (255, 0, 0), player.dino_rect, 2)
+            if player.mario_rect.colliderect(obstacle.rect):
+                #pygame.draw.rect(SCREEN, (255, 0, 0), player.mario_rect, 2)
                 pygame.time.delay(100)
                 death_count += 1                
                 menu(death_count, highscore)
