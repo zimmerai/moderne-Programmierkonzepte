@@ -36,8 +36,8 @@ class Mario:
     Y_POS = 260
     Y_POS_DUCK = 300
     JUMP_VEL = 8.5
-    JUMP_GRAVITY = 1.4
-    JUMP_TIMER_COOLDOWN = 5
+    JUMP_GRAVITY = 1
+    JUMP_TIMER_COOLDOWN = 10
 
     def __init__(self):
         self.duck_img = DUCKING
@@ -65,7 +65,7 @@ class Mario:
         if self.marioFirstJump:
             self.jump()
 
-        if self.step_index >= 10:
+        if self.step_index >= 20:
             self.step_index = 0
 
         #Interaction with User / Events
@@ -84,14 +84,14 @@ class Mario:
             self.mario_duck = False
 
     def duck(self):
-        self.image = self.duck_img[self.step_index // 5]
+        self.image = self.duck_img[self.step_index // 10]
         self.mario_rect = self.image.get_rect()
         self.mario_rect.x = self.X_POS
         self.mario_rect.y = self.Y_POS_DUCK
         self.step_index += 1    
 
     def run(self):
-        self.image = self.run_img[self.step_index // 5]
+        self.image = self.run_img[self.step_index // 10]
         self.mario_rect = self.image.get_rect()
         self.mario_rect.x = self.X_POS
         self.mario_rect.y = self.Y_POS
@@ -183,7 +183,7 @@ def main(highscore):
     clock = pygame.time.Clock()
     player = Mario()
     clouds = [Cloud(), Cloud(), Cloud(), Cloud(), Cloud()]
-    game_speed = 14
+    game_speed = 7
     x_pos_bg = 0
     y_pos_bg = 380
     points = 0    
@@ -195,7 +195,7 @@ def main(highscore):
         global points, game_speed
         points += 1        
         if points % 100 == 0:
-            game_speed += 1
+            game_speed += 0.5
         if points > highscore:
             highscore = points
         text = font.render("Highscore: " + str(highscore) + "  Points: " + str(points), True, (0,0,0))
@@ -251,7 +251,7 @@ def main(highscore):
 
         highscore = score(highscore)
 
-        clock.tick(30)
+        clock.tick(60)
         pygame.display.update()
 
 def menu(death_count, highscore):
