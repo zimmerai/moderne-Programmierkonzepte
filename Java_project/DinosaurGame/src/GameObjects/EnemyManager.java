@@ -1,10 +1,7 @@
 package GameObjects;
 
-import GameObjects.Obstacle;
-import GameObjects.Enemy;
 import UI.GameScreen;
 import Util.Resource;
-import com.company.Main;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

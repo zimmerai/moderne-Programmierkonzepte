@@ -7,7 +7,6 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
-import java.net.MalformedURLException;
 
 public class GameScreen extends JPanel implements Runnable, KeyListener {
 

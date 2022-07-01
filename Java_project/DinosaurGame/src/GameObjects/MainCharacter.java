@@ -3,13 +3,8 @@ package GameObjects;
 import Util.Animation;
 import Util.Resource;
 
-import javax.sound.sampled.AudioFileFormat;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
+
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
 
 import static UI.GameScreen.GRAVITY;
 import static UI.GameScreen.GROUNDY;
@@ -28,7 +23,6 @@ public class MainCharacter {
     private int jumpTimer = 1;
 
 
-//    private PlayClip deathSound;
 
 
     public MainCharacter() {
@@ -37,21 +31,12 @@ public class MainCharacter {
         characterRun.addFrame(Resource.getResourceImage("Java_project/DinosaurGame/data/Mario2_coloured.png"));
         rect = new Rectangle();
 
-//        try{
-//            deathSound = getClass().getResource("data/dead.wav");
-//            File soundFile = new File(deathSound.toURI());
-//            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundFile);
-//            Clip clip = AudioSystem.getClip();
-//            clip.open(audioInputStream);
-//            clip.start();
-//        } catch (Exception e){
-//            e.printStackTrace();
-//        }
+
     }
 
     public void update() {
         characterRun.update();
-        //fürs Springen
+        //for jumping
         if (y >= GROUNDY - characterRun.getFrame().getHeight()) {
             speedY = 0;
             y = GROUNDY - characterRun.getFrame().getHeight();
@@ -82,7 +67,6 @@ public class MainCharacter {
 
     public void draw(Graphics g) {
         g.setColor(Color.black);
-//        g.drawRect((int)x,(int)y, characterRun.getFrame().getWidth(),characterRun.getFrame().getHeight());
         g.drawImage(characterRun.getFrame(), (int) x, (int) y, null);
     }
 
@@ -127,7 +111,5 @@ public class MainCharacter {
         return isAlive;
     }
 
-//    public void playDeathSound(){
-//        deathSound.;
-//    }
+
 }
