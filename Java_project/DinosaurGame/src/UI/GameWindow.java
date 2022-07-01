@@ -31,7 +31,7 @@ public class GameWindow extends JFrame {
         super.paint(g);
         BufferedImage image = null;
         try{
-            image = ImageIO.read(new File("data/cactus1.png"));
+            image = ImageIO.read(new File("Java_project/DinosaurGame/data/cactus1.png"));
             g.drawImage(image, 300, 400, null);
         }catch (IOException e){
             e.printStackTrace();

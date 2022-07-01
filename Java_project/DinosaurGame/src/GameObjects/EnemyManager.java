@@ -24,8 +24,8 @@ public class EnemyManager {
         this.gameScreen = gameScreen;
         this.mainCharacter = mainCharacter;
         enemies = new ArrayList<Enemy>();
-        imageObstacle1 = Resource.getResourceImage("data/Enemy1-coloured.png");
-        imageObstacle2 = Resource.getResourceImage("data/Enemy2_coloured.png");
+        imageObstacle1 = Resource.getResourceImage("Java_project/DinosaurGame/data/Enemy1-coloured.png");
+        imageObstacle2 = Resource.getResourceImage("Java_project/DinosaurGame/data/Enemy2_coloured.png");
         random = new Random();
 
         enemies.add(getRandomObstacle());

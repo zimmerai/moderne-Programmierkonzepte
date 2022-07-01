@@ -33,8 +33,8 @@ public class MainCharacter {
 
     public MainCharacter() {
         characterRun = new Animation(100);
-        characterRun.addFrame(Resource.getResourceImage("data/Mario1_coloured.png"));
-        characterRun.addFrame(Resource.getResourceImage("data/Mario2_coloured.png"));
+        characterRun.addFrame(Resource.getResourceImage("Java_project/DinosaurGame/data/Mario1_coloured.png"));
+        characterRun.addFrame(Resource.getResourceImage("Java_project/DinosaurGame/data/Mario2_coloured.png"));
         rect = new Rectangle();
 
 //        try{
