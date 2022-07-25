@@ -1,6 +1,7 @@
 import os
 import pygame
 
+
 RUNNING = [pygame.image.load(os.path.join("Python_project/Data/Images/Mario", "Mario1_run.png")),
            pygame.image.load(os.path.join("Python_project/Data/Images/Mario", "Mario2_run.png"))]
 

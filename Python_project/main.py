@@ -11,7 +11,6 @@ from Code.highscore import store_highscore
 
 pygame.init()
 
-#GlobalConstants
 SCREEN_HEIGHT = 600
 SCREEN_WIDTH = 1100
 SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
@@ -67,7 +66,6 @@ def main(highscore):
             obstacle.draw(SCREEN)
             obstacle.update(game_speed, obstacles)
             if player.mario_rect.colliderect(obstacle.rect):
-                #pygame.draw.rect(SCREEN, (255, 0, 0), player.mario_rect, 2)
                 pygame.time.delay(100)
                 death_count += 1    
                 store_highscore(highscore)            
