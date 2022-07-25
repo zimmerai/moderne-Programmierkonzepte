@@ -6,7 +6,7 @@ Wir haben alle als Grundlage für unseren Code ein Tutorial für das Chrome-Dino
 
 ## JAVA (Lisa)
 ### Tutorial
-[Part 1: Setup and Dino Animation](https://www.youtube.com/watch?v=wnBGG7JLrkg&ab_channel=CodeBucket)
+[Tutorial Playlist: Chrome offline game tutorial](https://www.youtube.com/playlist?list=PLOgQJY7VjpBQhCZDWbucTp8WU8nXkbtUB)
 
 ### Eigene Erweiterungen
 
