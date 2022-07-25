@@ -1,11 +1,6 @@
 package UI;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.net.MalformedURLException;
 
 public class GameWindow extends JFrame {
@@ -27,17 +22,7 @@ public class GameWindow extends JFrame {
         gameScreen.startGame();
     }
 
-    public void paint(Graphics g){
-        super.paint(g);
-        BufferedImage image = null;
-        try{
-            image = ImageIO.read(new File("Java_project/DinosaurGame/data/cactus1.png"));
-            g.drawImage(image, 300, 400, null);
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-
-    }
+    
 
     public static void main(String[] args) throws MalformedURLException {
         GameWindow gw = new GameWindow();

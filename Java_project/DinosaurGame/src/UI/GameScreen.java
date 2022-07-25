@@ -85,8 +85,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
     public void paint(Graphics g) {
         g.setColor(Color.decode("#f7f7f7"));
         g.fillRect(0, 0, getWidth(), getHeight());
-//        g.setColor(Color.red);
-//        g.drawLine(0, (int) GROUNDY, getWidth(), (int) GROUNDY);
+
 
         switch (gameState) {
             case GAME_BEGIN_STATE:
@@ -119,7 +118,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
         }catch(InterruptedException e){
             e.printStackTrace();
         }
-        mainCharacter.setJumps(0);
+        mainCharacter.setRemainingJumps(0);
         mainCharacter.setJumpTimer(1);
         mainCharacter.setAlive(true);
         mainCharacter.setX(50);

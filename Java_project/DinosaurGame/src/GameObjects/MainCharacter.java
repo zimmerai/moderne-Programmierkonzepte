@@ -19,14 +19,14 @@ public class MainCharacter {
     private boolean isAlive = true;
     private static final int maxJumps = 2;
     private static final int jumpCooldown = 10;
-    private int jumps = 0;                   //number of remaining jumps
+    private int remainingJumps = 0;                  
     private int jumpTimer = 1;
 
 
 
 
     public MainCharacter() {
-        characterRun = new Animation(100);
+        characterRun = new Animation(120);
         characterRun.addFrame(Resource.getResourceImage("Java_project/DinosaurGame/data/Mario1_coloured.png"));
         characterRun.addFrame(Resource.getResourceImage("Java_project/DinosaurGame/data/Mario2_coloured.png"));
         rect = new Rectangle();
@@ -40,7 +40,7 @@ public class MainCharacter {
         if (y >= GROUNDY - characterRun.getFrame().getHeight()) {
             speedY = 0;
             y = GROUNDY - characterRun.getFrame().getHeight();
-            jumps = maxJumps;
+            remainingJumps = maxJumps;
             jumpTimer = 0;
         } else {
             speedY += GRAVITY;
@@ -53,8 +53,8 @@ public class MainCharacter {
         rect.height = characterRun.getFrame().getHeight();
     }
 
-    public void setJumps(int jumps) {
-        this.jumps = jumps;
+    public void setRemainingJumps(int remainingJumps) {
+        this.remainingJumps = remainingJumps;
     }
 
     public void setJumpTimer(int jumpTimer) {
@@ -71,10 +71,10 @@ public class MainCharacter {
     }
 
     public void jump() {
-        if((jumpTimer==0 || (jumps>0 && jumpTimer>jumpCooldown)) && isAlive) {
+        if((jumpTimer==0 || (remainingJumps>0 && jumpTimer>jumpCooldown)) && isAlive) {
             speedY = -3.5f;
             y += speedY;
-            jumps -= 1;
+            remainingJumps -= 1;
             jumpTimer = 1;
         }
     }
