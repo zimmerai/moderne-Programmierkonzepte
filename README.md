@@ -34,8 +34,9 @@ Wir haben alle als Grundlage für unseren Code ein Tutorial für das Chrome-Dino
 * Mehrere Wolken in unterschiedlichen Höhen, die langsamer als der Boden sind
 * Verschiedene Tastatureingaben zur Steuerung (Space, Pfeil hoch, "W" zum Springen; Pfeil runter, "S" und "C"zum Ducken bzw. Schrumpfen)
 * Highscore
-* Einfügen von unterschiedlichen Gegnern (Kaktus, Schlange und Rakete)
+* Einfügen von unterschiedlichen Gegnern (Virus, Schlange und Rakete)
 * Double Jump 
+* "ducken" Funktion
 
 ## Python (Johanna)
 ### Controls
