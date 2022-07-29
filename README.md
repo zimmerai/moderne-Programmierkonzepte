@@ -1,5 +1,6 @@
 # moderne-Programmierkonzepte
 Sammlung von allen 3 Jump and Run Projekten
+Die Programme sind alle von dem obersten Ordner "moderne-Programmierkonzepte" ausführbar (bei JavaScript gibt es zusätzliches Setup)
 
 # Tutorials und eigene Erweiterungen
 Wir haben alle als Grundlage für unseren Code ein Tutorial für das Chrome-Dino-Game genutzt und alles darüber hinaus wenn nicht anders gekennzeichnet eigenständig programmiert
@@ -11,7 +12,7 @@ Wir haben alle als Grundlage für unseren Code ein Tutorial für das Chrome-Dino
 ### Eigene Erweiterungen
 
 ## JavaScript (Aidan)
-### Setup (Vorraussetzung Node.js)
+### Setup (Vorraussetzung npm)
 * navigieren Sie im Terminal in den Ordner "Javascript_Project"
 * führen Sie den Befehl "npm install" aus
 * nach erfolgreicher Installation starten Sie den Server mit "npx live-server"
