@@ -40,6 +40,9 @@ Wir haben alle als Grundlage für unseren Code ein Tutorial für das Chrome-Dino
 * "ducken" Funktion
 
 ## Python (Johanna)
+### Setup
+* Führen sie die "main.py" in "Python_project" aus um das Spiel zu starten
+
 ### Controls
 * Springen: "W", "Space" oder "Pfeil nach oben"
 * Ducken: "S" oder "Pfeil nach unten"

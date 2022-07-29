@@ -13,6 +13,7 @@ public class Clouds {
     private List<Cloud> clouds;
 
     public Clouds() {
+        //Hier werden die Clouds gehardcoded, damit der Hintergrund immer gleich aussieht
         cloudImage = Resource.getResourceImage("Java_project/DinosaurGame/data/cloud.PNG");
         clouds = new ArrayList<Cloud>();
         Cloud cloud1 = new Cloud();
