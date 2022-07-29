@@ -1,5 +1,6 @@
 # moderne-Programmierkonzepte
-Sammlung von allen 3 Jump and Run Projekten
+Sammlung von allen 3 Jump and Run Projekten.
+
 Die Programme sind alle von dem obersten Ordner "moderne-Programmierkonzepte" ausführbar (bei JavaScript gibt es zusätzliches Setup)
 
 # Tutorials und eigene Erweiterungen
