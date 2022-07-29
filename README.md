@@ -1,15 +1,18 @@
 # moderne-Programmierkonzepte
 Sammlung von allen 3 Jump and Run Projekten.
 
-Die Programme sind alle von dem obersten Ordner "moderne-Programmierkonzepte" ausführbar (bei JavaScript gibt es zusätzliches Setup)
+Die Programme sind alle von dem obersten Ordner "moderne-Programmierkonzepte" ausführbar (bei JavaScript gibt es zusätzliches Setup).
 
 # Tutorials und eigene Erweiterungen
-Wir haben alle als Grundlage für unseren Code ein Tutorial für das Chrome-Dino-Game genutzt und alles darüber hinaus wenn nicht anders gekennzeichnet eigenständig programmiert
+Wir haben alle als Grundlage für unseren Code ein Tutorial für das Chrome-Dino-Game genutzt und alles darüber hinaus wenn nicht anders gekennzeichnet eigenständig programmiert.
 
 ## JAVA (Lisa)
 
 ### Setup
 * Führen Sie im GameWindow die main-Methode aus
+
+### Controls
+* Springen: "Space"
 
 ### Tutorial
 [Tutorial Playlist: Chrome offline game tutorial](https://www.youtube.com/playlist?list=PLOgQJY7VjpBQhCZDWbucTp8WU8nXkbtUB)
@@ -20,9 +23,6 @@ Wir haben alle als Grundlage für unseren Code ein Tutorial für das Chrome-Dino
 * Fixen von Bugs beim Jumps
 * Einfügen unterschiedlicher Gegner (Schlange, Virus)
 * Verbesserung des HighScores 
-
-### Controls
-* Springen: "Space"
 
 ## JavaScript (Aidan)
 ### Setup (Vorraussetzung npm)
@@ -63,10 +63,14 @@ Wir haben alle als Grundlage für unseren Code ein Tutorial für das Chrome-Dino
 ### Eigene Erweiterungen
 Dieses Projekt ist meine erste Python-Erfahrung und daher habe ich viel Zeit verwendet, um mich in Python einzuarbeiten.
 * Einfügen anderer Bilder und notwendige Anpassungen im Code wegen Position, Größe, etc. 
-* Mehrere Wolken in unterschiedlichen Höhen, die langsamer als der Boden sind
-* Verschieden Tastatureingaben zur Steuerung (Space, Pfeil hoch, "W" zum Springen; Pfeil runter und "S" zum Ducken bzw. Schrumpfen; ESC zum Beenden)
-* Highscore, der auf beiden Screens angezeigt werden kann (Menu- und Spiel-Screen)
-* All-Time-Highscore, der in einer Datei persistiert wird (Input-/Output Streams)
-* Umwandlung des Vogels zu einer Rakete, die schneller als der Boden ist
+* Mehrere Wolken in unterschiedlichen Höhen, die langsamer sind als der Boden
+* Verschiedene Tastatureingaben zur Steuerung 
+* Umwandlung des Vogels zu einer Rakete, die schneller ist als der Boden
+* Erhöhung der Framerate und Anpassungen verschiedener Variablen im Code für einen flüssigeren Ablauf
 * Double Jump 
 (sehr kompliziert zu lösen in Python, da die ausgelagerte Tastatureingabenabfrage nur überprüft, ob eine Taste gedrückt wird und deshalb nicht nur einmal triggert, sondern mehrmals; Dabei habe ich Hilfe von Aidan bekommen, der mit mir gemeinsam mehrere Stunden verschiedene Möglichkeiten und Ideen ausprobiert und Probleme analysiert hat. Durch diese Gespräche und Auseinandersetzung konnte ich mit weiterer Hilfe von Lisas bestehendem Code für den Double Jump eine funktionierende Lösung für den Double Jump in Python entwickeln und implementieren.)
+* Highscore, der auf beiden Screens angezeigt werden kann (Menu- und Spiel-Screen)
+* All-Time-Highscore, der in einer Datei persistiert wird (Input-/Output Streams)
+* Statische Typisierung, um Fehlerquellen zu verringern und die Codesicherheit zu erhöhen
+* Auslagern von Klassen und Funktionen zur besseren Lesbarkeit
+
