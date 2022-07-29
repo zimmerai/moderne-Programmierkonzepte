@@ -7,6 +7,10 @@ Die Programme sind alle von dem obersten Ordner "moderne-Programmierkonzepte" au
 Wir haben alle als Grundlage für unseren Code ein Tutorial für das Chrome-Dino-Game genutzt und alles darüber hinaus wenn nicht anders gekennzeichnet eigenständig programmiert
 
 ## JAVA (Lisa)
+
+### Setup
+* Führen Sie im GameWindow die main-Methode aus
+
 ### Tutorial
 [Tutorial Playlist: Chrome offline game tutorial](https://www.youtube.com/playlist?list=PLOgQJY7VjpBQhCZDWbucTp8WU8nXkbtUB)
 
@@ -14,8 +18,11 @@ Wir haben alle als Grundlage für unseren Code ein Tutorial für das Chrome-Dino
 * Einfügen anderer Bilder und notwendige Anpassungen im Code wegen Position, Größe, etc.
 * Implementierung eines Double-Jumps
 * Fixen von Bugs beim Jumps
-* Einfügen unterschiedlicher Gegner (Schlage, Virus)
+* Einfügen unterschiedlicher Gegner (Schlange, Virus)
 * Verbesserung des HighScores 
+
+### Controls
+* Springen: "Space"
 
 ## JavaScript (Aidan)
 ### Setup (Vorraussetzung npm)
