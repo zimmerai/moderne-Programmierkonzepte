@@ -10,6 +10,11 @@ Wir haben alle als Grundlage für unseren Code ein Tutorial für das Chrome-Dino
 [Tutorial Playlist: Chrome offline game tutorial](https://www.youtube.com/playlist?list=PLOgQJY7VjpBQhCZDWbucTp8WU8nXkbtUB)
 
 ### Eigene Erweiterungen
+* Einfügen anderer Bilder und notwendige Anpassungen im Code wegen Position, Größe, etc.
+* Implementierung eines Double-Jumps
+* Fixen von Bugs beim Jumps
+* Einfügen unterschiedlicher Gegner (Schlage, Virus)
+* Verbesserung des HighScores 
 
 ## JavaScript (Aidan)
 ### Setup (Vorraussetzung npm)
