@@ -66,6 +66,7 @@ Dieses Projekt ist meine erste Python-Erfahrung und daher habe ich viel Zeit ver
 * Mehrere Wolken in unterschiedlichen Höhen, die langsamer als der Boden sind
 * Verschieden Tastatureingaben zur Steuerung (Space, Pfeil hoch, "W" zum Springen; Pfeil runter und "S" zum Ducken bzw. Schrumpfen; ESC zum Beenden)
 * Highscore, der auf beiden Screens angezeigt werden kann (Menu- und Spiel-Screen)
+* All-Time-Highscore, der in einer Datei persistiert wird (Input-/Output Streams)
 * Umwandlung des Vogels zu einer Rakete, die schneller als der Boden ist
 * Double Jump 
-(sehr kompliziert zu lösen in Python, da die Tastatureingabe nur überprüft, ob eine Taste gedrückt wird und deshalb nicht nur einmal triggert, sondern mehrmals; Dabei habe ich Hilfe von Aidan bekommen, der mit mir gemeinsam mehrere Stunden verschiedene Möglichkeiten und Ideen ausprobiert und Probleme analysiert hat. Durch diese Gespräche und Auseinandersetzung konnte ich mit weiterer Hilfe von Lisas bestehendem Code für den Double Jump eine funktionierende Lösung für den Double Jump in Python entwickeln und implementieren.)
+(sehr kompliziert zu lösen in Python, da die ausgelagerte Tastatureingabenabfrage nur überprüft, ob eine Taste gedrückt wird und deshalb nicht nur einmal triggert, sondern mehrmals; Dabei habe ich Hilfe von Aidan bekommen, der mit mir gemeinsam mehrere Stunden verschiedene Möglichkeiten und Ideen ausprobiert und Probleme analysiert hat. Durch diese Gespräche und Auseinandersetzung konnte ich mit weiterer Hilfe von Lisas bestehendem Code für den Double Jump eine funktionierende Lösung für den Double Jump in Python entwickeln und implementieren.)
