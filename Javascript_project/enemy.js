@@ -38,6 +38,7 @@ import {
     nextEnemyTime -= timeDifference
   }
   
+  //Hitbox für Kollision von den Gegnern
   export function getEnemyRects() {
     return [...document.querySelectorAll("[data-enemy]")].map(enemy => {
       return enemy.getBoundingClientRect()

@@ -14,7 +14,9 @@ const startScreenElement = document.querySelector("[data-start-screen]")
 
 
 setPixelToWorldScale()
+//Event für das Verändern der Seite
 window.addEventListener("resize", setPixelToWorldScale)
+//Event für den Spielstart
 document.addEventListener("keydown", handleStart, { once: true })
 
 let currentHighScore = 0
@@ -84,6 +86,7 @@ function handleLose() {
   startScreenElement.classList.remove("hide")
 }
 
+//Skalieren des Spiels durch Seite
 function setPixelToWorldScale() {
   let worldToPixelScale
   if (window.innerWidth / window.innerHeight < WORLD_WIDTH / WORLD_HEIGHT) {

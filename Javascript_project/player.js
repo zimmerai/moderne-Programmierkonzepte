@@ -26,6 +26,7 @@ export function updatePlayer (timeDifference, speedScale) {
 
 }
 
+//Hitbox für Kollision von den Gegnern
 export function getPlayerRect() {
     return playerElement.getBoundingClientRect()
 }
